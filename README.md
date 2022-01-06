@@ -1,24 +1,13 @@
-# weather-project
+https://www.npmjs.com/package/vue-cookies
 
-## Project setup
-```
-npm install
-```
+https://feathericons.com/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+https://www.flaticon.com/
 
-### Compiles and minifies for production
-```
-npm run build
-```
+https://getbootstrap.com/
 
-### Lints and fixes files
-```
-npm run lint
-```
+https://fakestoreapi.com/docs
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+axios
+
+vue-router
