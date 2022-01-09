@@ -3,7 +3,7 @@
 
         <!-- banners -->
         <div class="home-banners">
-        <img src="@/assets/mercadolivre.webp" class="w-100" alt="">
+        <img src="@/assets/banner/banner-smartphone.png" class="w-100" alt="">
         </div>
 
         <Pitchbar />
@@ -56,18 +56,21 @@ export default {
 
     async created() {
 
-        const productsCookie = this.$cookies.get('v_store_products')
+        const productsSession = sessionStorage.v_store_products
 
-        if (productsCookie === null)
+        // apenas para dar uma diferenciada na ordem da exibição.
+        let dynamicSort = new Date().getHours() % 2 === 0 ? 'desc' : 'asc'
+
+        if (productsSession === undefined)
         {
-            let { data } = await this.$http.get('products?limit=12')
+            let { data } = await this.$http.get('products?sort=' + dynamicSort)
             this.products = data
-            this.$cookies.set('v_store_products', JSON.stringify(data))
+            sessionStorage.v_store_products = JSON.stringify(data)
             this.loading = false
         }
         else
         {
-            this.products = JSON.parse(productsCookie)
+            this.products = JSON.parse(productsSession)
             this.loading = false
         }
     },
@@ -99,6 +102,7 @@ export default {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
     background-color: rgba(255, 255, 255, 0.97);
 }
 

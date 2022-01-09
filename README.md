@@ -1,13 +1,31 @@
-https://www.npmjs.com/package/vue-cookies
+# VueStore (em desenvolvimento)
 
-https://feathericons.com/
+Aplicação para fins de prática de VueJS
 
-https://www.flaticon.com/
+![preview](./readmefiles/preview.png)
 
-https://getbootstrap.com/
 
-https://fakestoreapi.com/docs
+# Conceitos colocados em prática
+* VueRouter
+* Componentização
+* Mixins
+* Consumo de APIs com Axios
+* Manipulaçã de estado
+* Comunicação entre componentes
 
-axios
+# Bibliotecas e recursos
 
-vue-router
+[vue-cookies](https://www.npmjs.com/package/vue-cookies)
+
+[feathericons](https://feathericons.com)
+
+[flaticon](https://www.flaticon.com)
+
+[bootstrap](https://getbootstrap.com)
+
+[vue-router](https://router.vuejs.org/)
+
+
+# API utilizada
+
+[fakestoreapi](https://fakestoreapi.com/docs)
