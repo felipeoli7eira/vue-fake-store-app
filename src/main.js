@@ -19,7 +19,6 @@ Vue.use(VueCookies)
 
 // configs
 Vue.$cookies.config('1d', '', '/', false, 'Lax')
-Vue.prototype.baseAppUrl = window.location.origin
 Vue.config.productionTip = false
 
 // Vue

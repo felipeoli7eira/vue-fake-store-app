@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
-            <a :href="appBaseURL" class="navbar-brand text-app-name" title="Vue Store">VueStore</a>
+            <router-link to="/" class="navbar-brand">VueStore</router-link>
 
-            <button @click="menu.open = !menu.open" class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#storeNavBar">
+            <button @click="menu.open = !menu.open" class="navbar-toggler border-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#storeNavBar">
                 <img :src="menu.open ? menu.x : menu.bars" alt="Abrir/Fechar menu">
             </button>
 
@@ -18,9 +18,10 @@
                     <router-link to="/minha-conta">
                         <img src="@/assets/svgs/user.svg" class="me-4" width="20" alt="Minha conta">
                     </router-link>
-                    <router-link to="sacola">
+                    <button @click="openBag" type="button" class="btn btn-second mb-1 position-relative p-0 m-0">
                         <img src="@/assets/svgs/shopping-bag.svg" width="20" alt="Sacola">
-                    </router-link>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -28,7 +29,6 @@
 </template>
 
 <script>
-
 import getCategoriesMixin from '@/mixins/getCategories.js'
 
 document.title = 'VueStore'
@@ -40,14 +40,18 @@ export default {
 
     data() {
         return {
-            appBaseURL: this.baseAppUrl, // main.js
             menu: {
                 open: false,
-                bars: require('@/assets/svgs/menubars.svg'),
-                x: require('@/assets/svgs/x.svg')
+                bars: require('@/assets/svgs/menubars.svg'), // icone menu hamburguer
+                x: require('@/assets/svgs/x.svg') // icone "x" (fechar menu)
             },
 
             categories: []
+        }
+    },
+
+    methods: {
+        openBag() {
         }
     },
 
@@ -56,7 +60,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

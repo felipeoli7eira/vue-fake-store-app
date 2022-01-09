@@ -1,39 +1,41 @@
 <template>
-  <div id="home-component">
+    <div class="home">
 
-    <!-- banners -->
-    <div class="home-banners">
-      <img src="@/assets/mercadolivre.webp" class="w-100" alt="">
-    </div>
-
-    <Pitchbar />
-
-    <!-- products container -->
-    <div class="container mb-5">
-      <h1 class="h4 fw-light">Mais vendidos</h1>
-      <nav>
-        <div class="row">
-          <router-link v-for="product in products" :key="product.id" :to="`/${product.title.trim().replaceAll(' ', '-')}`"
-            class="col col-6 col-lg-3 mb-1 d-flex flex-column justify-content-start align-items-center border py-3 bg-body text-decoration-none">
-              <div class="w-100 img-product-container" :style="`background-image: url(${product.image})`"></div>
-
-              <h5 class="h5 text-dark m-0 text-start w-100 px-2 mt-4">{{ currencyBRL(product.price) }}</h5>
-              <p class="m-0 text-start text-dark w-100 px-2 text-price">Em 12x de {{ currencyBRL(product.price / 12) }}</p>
-          </router-link>
+        <!-- banners -->
+        <div class="home-banners">
+        <img src="@/assets/mercadolivre.webp" class="w-100" alt="">
         </div>
-      </nav>
-    </div>
 
-    <Newsletter />
-    
+        <Pitchbar />
 
-    <!-- loading spiner --> <div id="loading" v-show="loading">
-      <h2 class="h2 text-app-name text-white">VueStore</h2>
-      <div class="spinner-border text-light" role="status">
-        <span class="visually-hidden">Carregando...</span>
-      </div>
+        <!-- products container -->
+        <div class="container">
+            <nav>
+                <div class="row">
+                    <router-link
+                    v-for="product in products"
+                    :key="product.id"
+                    :to="productNameUrl(product.title)"
+                    class="col col-4 col-lg-3 bg-body text-decoration-none shadow-sm mb-3 p-4">
+
+                        <div class="w-100 product-img" :style="`background-image: url(${product.image})`"></div>
+
+                        <h6 class="h6 text-dark m-0 my-1">{{ currencyBRL(product.price) }}</h6>
+                        <p class="m-0 text-muted text-price">12x de {{ currencyBRL(product.price / 12) }}</p>
+                    </router-link>
+                </div>
+            </nav>
+        </div>
+
+        <Newsletter />
+
+        <!-- loading spiner -->
+        <div id="loading" v-show="loading">
+            <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -46,67 +48,76 @@ export default {
     components: { Pitchbar, Newsletter },
 
     data() {
-      return {
-        products: [],
-        loading: true
-      }
+        return {
+            products: [],
+            loading: true
+        }
     },
 
     async created() {
 
-      const productsCookie = this.$cookies.get('v_store_products')
+        const productsCookie = this.$cookies.get('v_store_products')
 
-      if (productsCookie === null)
-      {
-        let { data } = await this.$http.get('products?limit=12')
-        this.products = data
-        this.$cookies.set('v_store_products', JSON.stringify(data))
-        this.loading = false
-      }
-      else
-      {
-        this.products = JSON.parse(productsCookie)
-      }
+        if (productsCookie === null)
+        {
+            let { data } = await this.$http.get('products?limit=12')
+            this.products = data
+            this.$cookies.set('v_store_products', JSON.stringify(data))
+            this.loading = false
+        }
+        else
+        {
+            this.products = JSON.parse(productsCookie)
+            this.loading = false
+        }
     },
 
     methods: {
-      currencyBRL(str) {
-        return str.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-      }
+        currencyBRL(str) {
+            return str.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        },
+        productNameUrl(productName) {
+            return productName.trim().replaceAll(' ', '-')
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
+
 #loading
 {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  left: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
 
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    height: 100%;
 
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  z-index: 50;
-  background-color: rgba(48, 48, 48, 1);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.97);
 }
 
-.img-product-container
+.product-img
 {
-  height: 300px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top center;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@media (max-width: 767px) {
+    .product-img {
+        height: 150px;
+    }
 }
 
 .text-price
 {
-  font-size: 13px;
+    font-size: 13px;
 }
-
 </style>
