@@ -27,10 +27,6 @@ export default {
 
 <style scoped>
 
-#pitchbar-component {
-    overflow-x: scroll;
-}
-
 #pitchbar-component p {
     font-size: 14px;
     white-space: nowrap;
@@ -43,7 +39,7 @@ export default {
     }
 
     #pitchbar-component img {
-        widows: 25px;
+        width: 23px;
     }
 }
 

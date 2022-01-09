@@ -13,14 +13,13 @@
       <h1 class="h4 fw-light">Mais vendidos</h1>
       <nav>
         <div class="row">
-          <a href=""
-            v-for="product in products" :key="product.id"
+          <router-link v-for="product in products" :key="product.id" :to="`/${product.title.trim().replaceAll(' ', '-')}`"
             class="col col-6 col-lg-3 mb-1 d-flex flex-column justify-content-start align-items-center border py-3 bg-body text-decoration-none">
               <div class="w-100 img-product-container" :style="`background-image: url(${product.image})`"></div>
 
               <h5 class="h5 text-dark m-0 text-start w-100 px-2 mt-4">{{ currencyBRL(product.price) }}</h5>
               <p class="m-0 text-start text-dark w-100 px-2 text-price">Em 12x de {{ currencyBRL(product.price / 12) }}</p>
-          </a>
+          </router-link>
         </div>
       </nav>
     </div>
@@ -72,7 +71,7 @@ export default {
 
     methods: {
       currencyBRL(str) {
-        return str.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
+        return str.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
       }
     }
 }
@@ -82,10 +81,11 @@ export default {
 #loading
 {
   position: absolute;
+  z-index: 10;
   top: 0;
   left: 0;
 
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;

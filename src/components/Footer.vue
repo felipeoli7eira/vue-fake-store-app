@@ -13,7 +13,7 @@
                                 class="list-group-item list-group-item-action border-none bg-dark border-0"
                                 v-for="(category, index) in footerCategories"
                                 :key="index">
-                                    <a href="#" class="text-decoration-none text-success">{{ category }}</a>
+                                    <router-link :to="`/categoria/${category}`" class="text-decoration-none text-success">{{ category }}</router-link>
                             </li>
                         </ul>
                     </nav>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import getCategories from '@/mixins/getCategories'
+
 export default {
     name: 'Footer',
 
@@ -46,20 +48,10 @@ export default {
         }
     },
 
+    mixins: [ getCategories ],
+
     async created() {
-
-        const categoriesCookie = this.$cookies.get('v_store_categories') // categorias salvas em um cookie
-
-        if (categoriesCookie === null)
-        {
-            const { data } = await this.$http.get('products/categories')
-            this.footerCategories = data
-            this.$cookies.set('v_store_categories', JSON.stringify(data))
-        }
-        else
-        {
-            this.footerCategories = JSON.parse(categoriesCookie)
-        }
+        this.footerCategories = await this.getCategories()
     }
 }
 </script>
