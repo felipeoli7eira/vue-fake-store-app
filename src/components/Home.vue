@@ -18,7 +18,7 @@
                     :to="productNameUrl(product.title)"
                     class="col col-4 col-lg-3 bg-body text-decoration-none shadow-sm mb-3 p-4">
 
-                        <div class="w-100 product-img" :style="`background-image: url(${product.image})`"></div>
+                        <div @click="setProductIdOnStateDetail(product.id)" class="w-100 product-img" :style="`background-image: url(${product.image})`"></div>
 
                         <h6 class="h6 text-dark m-0 my-1">{{ currencyBRL(product.price) }}</h6>
                         <p class="m-0 text-muted text-price">12x de {{ currencyBRL(product.price / 12) }}</p>
@@ -81,6 +81,9 @@ export default {
         },
         productNameUrl(productName) {
             return productName.trim().replaceAll(' ', '-')
+        },
+        setProductIdOnStateDetail(productID) {
+            this.$store.state.productIdDetail = productID
         }
     }
 }
