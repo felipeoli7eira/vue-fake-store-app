@@ -3,7 +3,7 @@
 
         <!-- banners -->
         <div class="home-banners">
-        <img src="@/assets/banner/banner-smartphone.png" class="w-100" alt="">
+            <img src="@/assets/banner/banner-smartphone.png" class="w-100" alt="">
         </div>
 
         <Pitchbar />
@@ -15,13 +15,15 @@
                     <router-link
                     v-for="product in products"
                     :key="product.id"
-                    :to="productNameUrl(product.title)"
+                    :to="productDetailURL(product)"
                     class="col col-4 col-lg-3 bg-body text-decoration-none shadow-sm mb-3 p-4">
 
-                        <div @click="setProductIdOnStateDetail(product.id)" class="w-100 product-img" :style="`background-image: url(${product.image})`"></div>
+                        <div class="w-100 product-img" :style="`background-image: url(${product.image})`"></div>
 
-                        <h6 class="h6 text-dark m-0 my-1">{{ currencyBRL(product.price) }}</h6>
-                        <p class="m-0 text-muted text-price">12x de {{ currencyBRL(product.price / 12) }}</p>
+                        <div class="d-flex flex-wrap align-items-center justify-content-between mt-3">
+                            <h6 class="h6 text-dark m-0 my-1">{{ product.price | PRICE_BRL_FILTER }}</h6>
+                            <p class="m-0 text-success text-price">3x de {{ product.price / 3 | PRICE_BRL_FILTER }}</p>
+                        </div>
                     </router-link>
                 </div>
             </nav>
@@ -29,23 +31,23 @@
 
         <Newsletter />
 
-        <!-- loading spiner -->
-        <div id="loading" v-show="loading">
-            <div class="spinner-border text-dark" role="status">
-                <span class="visually-hidden">Carregando...</span>
-            </div>
-        </div>
+        <Loader :loading="loading" />
+
     </div>
 </template>
 
 <script>
 import Pitchbar from '@/components/Pitchbar'
 import Newsletter from '@/components/Newsletter'
+import Loader from '@/components/Loader'
+import formatProductDetailURL from '@/mixins/formatProductDetailURL.js'
 
 export default {
     name: 'Home',
+    
+    mixins: [formatProductDetailURL],
 
-    components: { Pitchbar, Newsletter },
+    components: { Pitchbar, Newsletter, Loader },
 
     data() {
         return {
@@ -55,62 +57,19 @@ export default {
     },
 
     async created() {
-
-        const productsSession = sessionStorage.v_store_products
-
         // apenas para dar uma diferenciada na ordem da exibição.
-        let dynamicSort = new Date().getHours() % 2 === 0 ? 'desc' : 'asc'
+        let minutes = new Date().getMinutes()
+        let dynamicSort = Math.abs(minutes) % 2 === 0 ? 'desc' : 'asc'
 
-        if (productsSession === undefined)
-        {
-            let { data } = await this.$http.get('products?sort=' + dynamicSort)
-            this.products = data
-            sessionStorage.v_store_products = JSON.stringify(data)
-            this.loading = false
-        }
-        else
-        {
-            this.products = JSON.parse(productsSession)
-            this.loading = false
-        }
-    },
-
-    methods: {
-        currencyBRL(str) {
-            return str.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-        },
-        productNameUrl(productName) {
-            return productName.trim().replaceAll(' ', '-')
-        },
-        setProductIdOnStateDetail(productID) {
-            this.$store.state.productIdDetail = productID
-        }
+        let { data } = await this.$http.get('products?sort=' + dynamicSort)
+        this.products = data
+        this.loading = false
     }
 }
 </script>
 
 <style scoped>
-
-#loading
-{
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-
-    background-color: rgba(255, 255, 255, 0.97);
-}
-
-.product-img
-{
+.product-img {
     height: 300px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -123,8 +82,8 @@ export default {
     }
 }
 
-.text-price
-{
+.text-price {
     font-size: 13px;
+    white-space: nowrap;
 }
 </style>

@@ -51,10 +51,10 @@ export default {
 <style>
 
 /* fonte geral */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
 
 * {
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 body {

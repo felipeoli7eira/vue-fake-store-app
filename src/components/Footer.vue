@@ -8,9 +8,8 @@
                         <ul class="list-group">
                             <li
                                 class="list-group-item list-group-item-action fw-light p-0 mb-1 bg-dark border-0"
-                                v-for="(category, index) in footerCategories"
-                                :key="index">
-                                    <router-link :to="`/categoria/${category}`" class="text-decoration-none text-success">{{ category }}</router-link>
+                                v-for="(categ, index) in categories" :key="index">
+                                    <router-link :to="`/categoria/${categ.slug || categ.label}`" class="text-decoration-none text-success">{{ categ.label }}</router-link>
                             </li>
                         </ul>
                     </nav>
@@ -48,15 +47,9 @@ export default {
     name: 'Footer',
 
     data() {
-        return {
-            footerCategories: []
-        }
+        return {}
     },
 
-    mixins: [ getCategories ],
-
-    async created() {
-        this.footerCategories = await this.getCategories()
-    }
+    mixins: [ getCategories ], // as categorias vem desse mixin
 }
 </script>

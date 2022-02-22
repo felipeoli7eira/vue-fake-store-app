@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store(
     {
         state: {
-            productIdDetail: undefined
+            productIdDetail: undefined,
+            currentCategoryShow: ''
         }
     }
 )
