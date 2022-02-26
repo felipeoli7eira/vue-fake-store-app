@@ -10,20 +10,22 @@ Aplicação para fins de prática de VueJS
 * Componentização
 * Mixins
 * Consumo de APIs com Axios
-* Manipulaçã de estado
+* VueX
 * Comunicação entre componentes
 
 # Bibliotecas e recursos
 
-[vue-cookies](https://www.npmjs.com/package/vue-cookies)
-
 [feathericons](https://feathericons.com)
+
+[undraw icons](https://undraw.co/)
 
 [flaticon](https://www.flaticon.com)
 
 [bootstrap](https://getbootstrap.com)
 
 [vue-router](https://router.vuejs.org/)
+
+[vuex](https://vuex.vuejs.org/)
 
 
 # API utilizada
