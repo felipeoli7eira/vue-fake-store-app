@@ -1,6 +1,6 @@
 # VueStore (em desenvolvimento)
 
-[vstoreweb](https://vstoreweb.vercel.app/)
+[vstoreweb](https://vstoreweb.vercel.app/#/)
 
 Aplicação para fins de prática de VueJS
 
