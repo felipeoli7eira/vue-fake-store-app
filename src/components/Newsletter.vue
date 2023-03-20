@@ -31,7 +31,7 @@
 export default {
     methods: {
         fakeSignature() {
-            alert('Obrigado! (Nenhuma informação foi salva, veja o código fonte)')
+            alert('Obrigado! (Nenhuma informação foi salva)')
         }
     }
 }
