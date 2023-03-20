@@ -32,11 +32,11 @@
                 <!-- por <a class="link-success" href="https://github.com/felipeoli7eira">Felipe Oliveira</a> -->
             </nav>
 
-            <nav class="text-center mt-4">
+            <!-- <nav class="text-center mt-4">
                 <a class="link-success text-decoration-none fw-lighter" target="_blank" href="https://github.com/felipeoli7eira/vue-fake-store-app">
                     <img src="@/assets/svgs/github.svg" alt="Código fonte" title="Código fonte do app" width="20">
                 </a>
-            </nav>
+            </nav> -->
         </div>
     </footer>
 </template>
