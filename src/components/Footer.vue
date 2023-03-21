@@ -17,10 +17,10 @@
 
                 <div class="col col-12 col-md-6 my-4 my-md-0 text-end">
                     <nav>
-                        <a class="me-2" target="_blank" href="https://www.instagram.com/lucas_alvs96/">
+                        <a class="me-2" target="_blank" href="https://instagram.com/oli7eirafelipe">
                             <img loading="lazy" src="@/assets/png/instagram.png" width="20" alt="Perfil no instagram">
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/lucastreze22/">
+                        <a target="_blank" href="https://linkedin.com/in/felipeoli7eira">
                             <img loading="lazy" src="@/assets/png/linkedin.png" width="20" alt="Perfil no linkedin">
                         </a>
                     </nav>
@@ -28,15 +28,14 @@
             </div>
 
             <nav class="mt-3 mt-md-0 fw-light text-center">
-                Desenvolvido com a <a class="link-success" href="https://fakestoreapi.com">fake store api</a> por Lucas Oliveira
-                <!-- por <a class="link-success" href="https://github.com/felipeoli7eira">Felipe Oliveira</a> -->
+                Desenvolvido com a <a class="link-success" href="https://fakestoreapi.com">fake store api</a> por <a class="link-success" href="https://github.com/felipeoli7eira">Felipe Oliveira</a>
             </nav>
 
-            <!-- <nav class="text-center mt-4">
+            <nav class="text-center mt-4">
                 <a class="link-success text-decoration-none fw-lighter" target="_blank" href="https://github.com/felipeoli7eira/vue-fake-store-app">
                     <img src="@/assets/svgs/github.svg" alt="Código fonte" title="Código fonte do app" width="20">
                 </a>
-            </nav> -->
+            </nav>
         </div>
     </footer>
 </template>
